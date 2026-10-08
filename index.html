@@ -3,462 +3,406 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#087f8c">
-<meta name="description" content="PREVIRAS 2.0: plataforma educativa sobre higienização das mãos e prevenção de infecções relacionadas à assistência à saúde.">
-<title>PREVIRAS 2.0 — Prevenir também é cuidar</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PREVIRAS 2.0 | Mãos que cuidam</title>
 <style>
-:root{
-  --teal:#087f8c;--deep:#075963;--mint:#e6f7f3;
-  --blue:#edf3ff;--purple:#7250bd;--ink:#1e3042;
-  --muted:#637386;--paper:#f6f8fc;--line:#e3eaf1;
-  --white:#fff;--gold:#f4c75d;--green:#18784d;
-  --shadow:0 12px 34px #1d34460c
+:root {
+  --verde:#167d78;
+  --menta:#dff5e9;
+  --amarelo:#ffe18a;
+  --coral:#ff8878;
+  --lilas:#e9e1ff;
+  --fundo:#fffaf0;
+  --texto:#203d43;
+  --cinza:#61757a;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 Inter,system-ui,-apple-system,"Segoe UI",sans-serif}
-button,a{font:inherit}
-button{cursor:pointer}
-button:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
-a{color:var(--teal)}
-.topbar{background:#fff;border-bottom:1px solid var(--line);padding:13px 5%;display:flex;justify-content:space-between;align-items:center;gap:15px}
-.brand{display:flex;align-items:center;gap:11px;font-weight:900;letter-spacing:-.03em}
-.logo{width:45px;height:45px;display:grid;place-items:center;background:var(--mint);border-radius:15px;color:var(--teal);font-size:25px}
-.brand small{display:block;font-size:.75rem;font-weight:600;letter-spacing:0;color:var(--muted)}
-.header-note{font-size:.82rem;font-weight:800;color:var(--teal);background:var(--mint);padding:7px 13px;border-radius:99px}
-.wrap{width:min(1120px,90%);margin:auto}
-.hero{padding:60px 0 45px;background:linear-gradient(125deg,#dff7f1,#eaf0ff 65%,#f8eafb)}
-.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:35px;align-items:center}
-.eyebrow{font-size:.76rem;letter-spacing:.11em;text-transform:uppercase;color:var(--teal);font-weight:900}
-h1{font-size:clamp(2.5rem,6vw,4.7rem);line-height:1.03;letter-spacing:-.065em;margin:13px 0 18px}
-h1 span{color:var(--teal)}
-h2{font-size:clamp(1.65rem,4vw,2.45rem);letter-spacing:-.04em;line-height:1.16;margin:7px 0 13px}
+body{
+  margin:0;background:var(--fundo);color:var(--texto);
+  font-family:Arial,Helvetica,sans-serif;line-height:1.6
+}
+header{
+  max-width:1100px;margin:auto;padding:20px;
+  display:flex;justify-content:space-between;align-items:center;gap:12px
+}
+.logo{font-size:21px;font-weight:900;color:var(--verde)}
+.logo span{font-size:28px}
+header small{font-size:12px;color:var(--cinza)}
+main{overflow:hidden}
+.container{width:min(1050px,92%);margin:auto}
+.hero{padding:40px 0 65px}
+.hero-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:35px;
+  align-items:center
+}
+.etiqueta{
+  display:inline-block;background:var(--menta);padding:7px 14px;
+  border-radius:30px;font-weight:bold;font-size:13px
+}
+h1{font-size:clamp(38px,5vw,62px);line-height:1.06;letter-spacing:-2px;margin:18px 0}
+h1 span{color:var(--verde)}
+h2{font-size:clamp(28px,4vw,40px);line-height:1.15;margin:10px 0}
 h3{line-height:1.25}
-p{margin-top:0}
-.hero p{max-width:610px;color:#4c5e70;font-size:1.08rem}
-.hero-art{min-height:265px;display:grid;place-items:center;position:relative}
-.art-orb{width:245px;height:245px;border-radius:42% 58% 52% 48%;display:grid;place-items:center;background:linear-gradient(140deg,#fff,#bcebe0);box-shadow:0 25px 55px #1d6e6815;transform:rotate(-5deg)}
-.art-orb svg{width:190px;max-width:85%}
-.float{position:absolute;background:#fff;border:1px solid #edf1f4;padding:9px 13px;border-radius:14px;box-shadow:var(--shadow);font-weight:800;font-size:.82rem}
-.float.one{top:16px;right:0}.float.two{bottom:12px;left:0}
-.section{padding:52px 0}
-.center{text-align:center;max-width:720px;margin:0 auto 28px}
-.muted{color:var(--muted)}
-.path-grid,.grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
-.path{background:#fff;border:1px solid var(--line);border-radius:24px;padding:25px;text-align:left;box-shadow:var(--shadow);transition:.2s;color:var(--ink)}
-.path:hover{transform:translateY(-3px);border-color:#9adbd2}
-.path.patient:hover{border-color:#cdbcf3}
-.path-icon{width:58px;height:58px;border-radius:19px;background:var(--mint);display:grid;place-items:center;font-size:28px;margin-bottom:13px}
-.patient .path-icon{background:#f0eaff}
-.path h3{margin:5px 0 8px;font-size:1.18rem}
-.path p{color:var(--muted);margin-bottom:14px}
-.link-label{font-weight:900;color:var(--teal)}
-.patient .link-label{color:var(--purple)}
-.chips{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;margin-top:23px}
-.chip{background:#fff;border:1px solid var(--line);border-radius:99px;padding:7px 12px;font-size:.83rem}
-.content-area{display:none;padding:30px 0 60px}
-.content-area.active{display:block}
-.back,.secondary{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:12px;padding:10px 14px;font-weight:800}
-.banner{padding:27px;border-radius:23px;background:linear-gradient(120deg,#dff7f1,#e8efff);margin:20px 0 25px}
-.banner.patient-banner{background:linear-gradient(120deg,#f0e9ff,#ffeaf0)}
-.banner h2{margin-top:5px}
-.banner p{margin-bottom:0;color:#536579}
-.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:18px 0}
-.card,.panel{background:#fff;border:1px solid var(--line);border-radius:20px;padding:21px;box-shadow:var(--shadow)}
-.card .emoji{font-size:1.8rem}
-.card h3{margin:7px 0}
-.card p{font-size:.92rem;color:var(--muted);margin-bottom:0}
-.panel{padding:clamp(18px,4vw,30px);margin:20px 0}
-.panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.badge{display:inline-flex;align-items:center;gap:5px;border-radius:99px;background:var(--mint);color:var(--teal);padding:5px 10px;font-size:.76rem;font-weight:900}
-.divider{height:1px;background:var(--line);margin:22px 0}
-.steps{display:flex;gap:6px;margin:18px 0}
-.step-bar{height:7px;flex:1;background:#e8edf3;border-radius:99px}
-.step-bar.done{background:var(--teal)}
-.demo-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:25px;align-items:center}
-.hand-stage{min-height:245px;border-radius:20px;background:linear-gradient(145deg,#effaf8,#e8f1ff);display:grid;place-items:center;text-align:center;padding:18px;overflow:hidden}
-.hand-stage svg{width:min(220px,85%);height:190px;overflow:visible}
-.hand-motion{transform-origin:center;animation:rub 1.3s ease-in-out infinite alternate}
-@keyframes rub{from{transform:translateX(-7px) rotate(-2deg)}to{transform:translateX(7px) rotate(2deg)}}
-.step-counter{font-size:.78rem;color:var(--teal);font-weight:900;letter-spacing:.08em}
-.demo-copy h3{font-size:1.5rem;margin:6px 0}
-.demo-copy p{color:var(--muted)}
-.controls{display:flex;flex-wrap:wrap;gap:9px;margin-top:17px}
-.primary{background:var(--teal);color:white;border:0;border-radius:12px;padding:11px 16px;font-weight:900}
-.primary:hover{background:var(--deep)}
-.secondary:disabled{opacity:.4;cursor:not-allowed}
-.notice{border-left:4px solid var(--gold);background:#fff9e8;color:#6c5318;padding:13px 15px;border-radius:0 12px 12px 0;font-size:.9rem}
-.moments{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-top:17px}
-.moment{border:1px solid var(--line);background:#fbfcff;border-radius:15px;padding:14px 11px;text-align:left;color:var(--ink)}
-.moment strong{display:block;color:var(--teal);font-size:.8rem;margin-bottom:6px}
-.moment[aria-pressed="true"]{border-color:var(--teal);background:var(--mint)}
-.moment-detail{background:#f1faf8;border-radius:15px;padding:17px;margin-top:12px}
-.scenario{background:#f6f8ff;border:1px solid #e1e8fa;padding:18px;border-radius:17px}
-.scenario-options,.quiz-options{display:grid;gap:9px;margin-top:13px}
-.option{border:1px solid #dfe7f0;background:white;color:var(--ink);border-radius:12px;text-align:left;padding:12px 14px}
-.option:hover{border-color:var(--teal)}
-.option:disabled{cursor:default}
-.feedback{display:none;margin-top:13px;border-radius:12px;padding:12px 14px}
-.feedback.show{display:block}
-.feedback.good{background:#e1f6e9;color:#165d3a}
-.feedback.bad{background:#fff1df;color:#7a4c10}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:17px 0}
-.stat{background:#f8fafc;border:1px solid var(--line);border-radius:14px;padding:13px;text-align:center}
-.stat strong{display:block;font-size:1.4rem;color:var(--teal)}
-.missions{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.mission{border:1px solid var(--line);border-radius:15px;padding:15px;background:#fbfcff}
-.mission.done{background:#edfaf1;border-color:#9ad9b2}
-.mission .medal{font-size:1.8rem}
-.mission h3{font-size:1rem;margin:6px 0}
-.mission p{font-size:.85rem;color:var(--muted);margin:0}
-.reference-list{padding-left:20px}
-.reference-list li{margin:10px 0}
-.reference-list a{overflow-wrap:anywhere}
-.small{font-size:.86rem}
-.footer{background:#203344;color:white;text-align:center;padding:28px 5%}
-.footer p{margin:5px}
-.footer small{color:#cbd6df}
-.hidden{display:none!important}
-@media(max-width:800px){
- .hero-grid,.demo-grid{grid-template-columns:1fr}
- .hero{padding-top:38px}
- .hero-art{min-height:220px}
- .art-orb{width:200px;height:200px}
- .cards{grid-template-columns:1fr}
- .moments{grid-template-columns:repeat(2,minmax(0,1fr))}
- .missions{grid-template-columns:1fr}
+p{color:var(--cinza)}
+.hero p{font-size:18px}
+.escolha{font-weight:bold;color:var(--texto);margin:25px 0 12px}
+.botoes{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.opcao{
+  border:0;border-radius:18px;padding:18px;text-align:left;
+  color:var(--texto);cursor:pointer;min-height:110px;
+  transition:transform .2s
 }
-@media(max-width:520px){
- .path-grid,.grid-2{grid-template-columns:1fr}
- .header-note{display:none}
- .stats{grid-template-columns:1fr}
- .moment{padding:12px 9px}
+.opcao:hover{transform:translateY(-3px)}
+.opcao strong{display:block;font-size:16px}
+.opcao span{display:block;font-size:13px;margin-top:6px}
+.profissional{background:var(--menta)}
+.paciente{background:var(--lilas)}
+.ilustracao{
+  background:var(--amarelo);border-radius:45% 55% 48% 52%;
+  padding:25px;display:flex;align-items:center;justify-content:center;
+  min-height:340px
 }
-@media(prefers-reduced-motion:reduce){
- *,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}
+.ilustracao svg{width:100%;max-width:370px;height:auto}
+.secao{padding:65px 0}
+.secao.clara{background:#eff9f3}
+.titulo{text-align:center;max-width:700px;margin:0 auto 30px}
+.titulo p{margin-top:8px}
+.grade{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.cartao{
+  background:white;border:1px solid #e3ebe5;border-radius:22px;
+  padding:24px;box-shadow:0 8px 25px #234b4110
+}
+.cartao .icone{font-size:34px}
+.cartao ul{padding-left:20px;color:var(--cinza)}
+.cartao li{margin:8px 0}
+.tag{
+  display:inline-block;background:var(--menta);border-radius:20px;
+  padding:5px 10px;font-size:12px;font-weight:bold;margin:3px
+}
+.botao{
+  display:inline-block;border:0;border-radius:12px;padding:12px 17px;
+  background:var(--verde);color:white;font-weight:bold;cursor:pointer;
+  text-decoration:none;margin:5px 5px 0 0
+}
+.botao.coral{background:var(--coral);color:var(--texto)}
+.botao.claro{background:#fff;color:var(--texto);border:1px solid #dce7e1}
+.figura-tecnica{
+  background:white;border-radius:24px;padding:20px;
+  border:1px solid #e3ebe5;text-align:center
+}
+.figura-tecnica img{max-width:100%;height:auto}
+.aviso{
+  padding:15px;background:#fff3ce;border-radius:14px;
+  font-size:14px;margin-top:18px;color:var(--texto)
+}
+.momentos{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.momento{background:white;border-radius:18px;padding:16px}
+.numero{
+  display:grid;place-items:center;background:var(--amarelo);
+  width:34px;height:34px;border-radius:12px;font-weight:bold
+}
+.momento h3{font-size:16px}
+.momento p{font-size:14px}
+.quiz-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.pergunta{font-weight:bold;color:var(--texto);margin:20px 0 12px}
+.resposta{
+  display:block;width:100%;text-align:left;padding:12px;
+  margin:8px 0;border-radius:12px;border:1px solid #dce7e1;
+  background:white;color:var(--texto);cursor:pointer
+}
+.resposta:hover{background:var(--menta)}
+.resposta.certa{background:#dff5e9;border-color:#167d78}
+.resposta.errada{background:#ffe5e0;border-color:#d75c50}
+.feedback{min-height:45px;font-size:14px;color:var(--cinza)}
+.fontes{background:#203d43;color:white;padding:45px 0}
+.fontes p{color:#d7e6e2}
+.fontes a{
+  display:block;padding:12px;margin:8px 0;border-radius:12px;
+  background:#ffffff12;color:#ffe18a;overflow-wrap:anywhere
+}
+footer{padding:20px;text-align:center;font-size:12px;color:var(--cinza)}
+@media(max-width:750px){
+  .hero-grid,.grade,.quiz-grid{grid-template-columns:1fr}
+  .ilustracao{min-height:250px}
+  .momentos{grid-template-columns:1fr 1fr}
+  .botoes{grid-template-columns:1fr}
+  .opcao{min-height:85px}
+  .hero{padding-top:15px}
+}
+@media(max-width:430px){
+  .momentos{grid-template-columns:1fr}
+  header{align-items:flex-start}
 }
 </style>
 </head>
 <body>
-<header class="topbar">
-  <div class="brand">
-    <div class="logo" aria-hidden="true">✚</div>
-    <div>PREVIRAS <span style="color:var(--teal)">2.0</span><small>Educação que protege</small></div>
+
+<header>
+  <div class="logo"><span>✋</span> PREVIRAS 2.0<br>
+    <small>APRENDER · PRATICAR · PREVENIR</small>
   </div>
-  <div class="header-note">Prevenir também é cuidar 💚</div>
+  <small>EDUCAÇÃO EM SAÚDE</small>
 </header>
 
 <main>
-<section id="home">
-  <div class="hero">
-    <div class="wrap hero-grid">
-      <div>
-        <span class="eyebrow">Conhecimento · Cuidado · Segurança</span>
-        <h1>Pequenas atitudes.<br><span>Grande proteção.</span></h1>
-        <p>Explore experiências educativas sobre higienização das mãos e prevenção de infecções relacionadas à assistência à saúde. Aprender também é uma forma de cuidar.</p>
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <span class="etiqueta">💚 Mãos limpas, cuidado seguro</span>
+      <h1>Um gesto pequeno.<br><span>Uma grande proteção.</span></h1>
+      <p>Aprenda como a higiene das mãos ajuda a prevenir a transmissão de microrganismos e a tornar o cuidado mais seguro.</p>
+      <div class="escolha">Como você quer participar?</div>
+      <div class="botoes">
+        <button class="opcao profissional" onclick="ir('trilha-profissional')">
+          <strong>🩺 SOU PROFISSIONAL</strong>
+          <span>Técnica, prevenção e cinco momentos.</span>
+        </button>
+        <button class="opcao paciente" onclick="ir('trilha-paciente')">
+          <strong>💚 SOU PACIENTE / ACOMPANHANTE</strong>
+          <span>Dicas para participar de um cuidado seguro.</span>
+        </button>
       </div>
-      <div class="hero-art" aria-label="Ilustração de mãos e proteção">
-        <div class="art-orb">
-          <svg viewBox="0 0 220 220" role="img" aria-label="Mãos sob gotas de água">
-            <defs><linearGradient id="skin" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#f8c9a8"/><stop offset="1" stop-color="#d99072"/></linearGradient></defs>
-            <path d="M38 128 Q27 110 41 96 Q49 88 57 102 L73 126 L70 82 Q70 67 82 67 Q94 67 94 83 L97 108 L99 64 Q100 50 112 51 Q125 52 123 68 L121 105 L129 77 Q133 63 144 68 Q155 73 150 88 L144 119 Q159 98 169 109 Q178 118 165 135 L143 168 Q134 181 111 181 L86 178 Q66 174 57 157Z" fill="url(#skin)" stroke="#b76f59" stroke-width="2"/>
-            <path d="M39 50 Q31 35 42 26 Q53 35 45 50Z" fill="#47bfc4"/><path d="M166 56 Q158 41 169 32 Q180 41 172 56Z" fill="#47bfc4"/>
-            <path d="M70 194 Q110 208 150 194" fill="none" stroke="#087f8c" stroke-width="5" stroke-linecap="round"/>
-            <path d="M93 26 L93 12 M110 30 L115 17 M126 36 L136 26" stroke="#087f8c" stroke-width="4" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <div class="float one">🛡️ Mais segurança</div>
-        <div class="float two">💧 Higiene das mãos</div>
-      </div>
+    </div>
+
+    <div class="ilustracao">
+      <!-- Ilustração estática de mãos e água -->
+      <svg viewBox="0 0 360 330" role="img" aria-label="Ilustração de mãos sendo higienizadas com água e sabão">
+        <circle cx="180" cy="160" r="130" fill="#fffaf0"/>
+        <path d="M73 72 C65 52 83 41 94 60 C105 77 101 89 87 99 C75 91 77 82 73 72Z" fill="#8bd9ec"/>
+        <path d="M264 62 C254 43 274 32 284 52 C295 69 291 82 277 91 C265 83 268 73 264 62Z" fill="#8bd9ec"/>
+        <path d="M290 126 C283 111 299 101 308 117 C317 131 313 141 302 149 C292 141 294 134 290 126Z" fill="#8bd9ec"/>
+        <path d="M62 144 C53 127 69 116 80 134 C90 149 85 160 74 168 C64 160 66 153 62 144Z" fill="#8bd9ec"/>
+        <path d="M105 215 C89 204 86 184 97 173 L132 139 C139 132 149 139 144 148 L128 169 L165 131 C173 122 185 131 178 141 L151 177 L188 145 C197 137 208 148 199 157 L167 191 L197 170 C208 163 216 175 207 184 L162 231 C146 248 124 242 105 215Z" fill="#ffb89d" stroke="#a85c4e" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M254 215 C270 204 273 184 262 173 L227 139 C220 132 210 139 215 148 L231 169 L194 131 C186 122 174 131 181 141 L208 177 L171 145 C162 137 151 148 160 157 L192 191 L162 170 C151 163 143 175 152 184 L197 231 C213 248 235 242 254 215Z" fill="#ffcfb8" stroke="#a85c4e" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M141 95 C151 81 169 82 178 94 L189 109 L201 93 C211 80 231 88 228 103 L216 130 L199 144 L172 135 L151 119Z" fill="#8bd9ec" opacity=".9"/>
+        <path d="M126 266 Q180 288 234 266" fill="none" stroke="#167d78" stroke-width="6" stroke-linecap="round"/>
+        <text x="180" y="307" text-anchor="middle" font-size="15" font-weight="bold" fill="#167d78">Higienizar é cuidar!</text>
+      </svg>
     </div>
   </div>
-  <section class="section wrap">
-    <div class="center">
-      <span class="eyebrow">Escolha seu caminho</span>
-      <h2>O cuidado é de todos</h2>
-      <p class="muted">Duas trilhas, uma missão: tornar o cuidado mais seguro para todos.</p>
-    </div>
-    <div class="path-grid">
-      <button class="path" onclick="openArea('professional')">
-        <div class="path-icon">🩺</div>
-        <h3>SOU PROFISSIONAL</h3>
-        <p>Revise os momentos de higiene das mãos, pratique decisões em cenários clínicos e complete desafios educativos.</p>
-        <span class="link-label">Entrar na trilha profissional →</span>
-      </button>
-      <button class="path patient" onclick="openArea('patient')">
-        <div class="path-icon">💜</div>
-        <h3>SOU PACIENTE/ACOMPANHANTE</h3>
-        <p>Aprenda a cuidar das próprias mãos, participe da segurança e descubra como conversar com a equipe.</p>
-        <span class="link-label">Entrar na trilha do paciente →</span>
-      </button>
-    </div>
-    <div class="chips">
-      <span class="chip">📱 Adaptado para celular</span>
-      <span class="chip">🎯 Atividades interativas</span>
-      <span class="chip">🤝 Cuidado compartilhado</span>
-    </div>
-  </section>
 </section>
 
-<section id="professional" class="content-area">
-<div class="wrap">
-  <button class="back" onclick="goHome()">← Voltar ao início</button>
-  <div class="banner">
-    <span class="eyebrow">Trilha do profissional</span>
-    <h2>Segurança começa nas mãos</h2>
-    <p>Treine o raciocínio, revise a técnica e reconheça oportunidades de prevenção. Use sempre as orientações vigentes e o protocolo da instituição.</p>
-  </div>
-
-  <div class="cards">
-    <article class="card"><div class="emoji">🫧</div><h3>Preparação alcoólica</h3><p>Quando indicada, cubra todas as superfícies das mãos e friccione até secarem. Referência habitual de fricção: 20–30 segundos.</p></article>
-    <article class="card"><div class="emoji">🧼</div><h3>Água e sabonete</h3><p>Indicados quando as mãos estão visivelmente sujas e em outras situações previstas nas recomendações aplicáveis. Referência: 40–60 segundos para o procedimento completo.</p></article>
-    <article class="card"><div class="emoji">🧤</div><h3>Luvas não substituem</h3><p>Higienize as mãos nos momentos indicados, inclusive antes de calçar e após retirar as luvas, conforme a situação assistencial.</p></article>
-  </div>
-
-  <section class="panel" id="technique">
-    <div class="panel-head"><div><span class="eyebrow">Laboratório interativo</span><h2>Seis etapas da técnica</h2></div><span class="badge">MISSÃO 1</span></div>
-    <p class="muted">Explore cada movimento. A ilustração é esquemática e não representa uma demonstração anatômica real; use-a como apoio educativo.</p>
-    <div class="steps" id="stepProgress"></div>
-    <div class="demo-grid">
-      <div class="hand-stage">
-        <svg viewBox="0 0 220 190" role="img" aria-label="Ilustração esquemática de duas mãos">
-          <defs><linearGradient id="handColor" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#ffd8b8"/><stop offset="1" stop-color="#d99778"/></linearGradient></defs>
-          <g class="hand-motion" id="handIllustration" fill="url(#handColor)" stroke="#b8765b" stroke-width="2" stroke-linejoin="round">
-            <path d="M29 130 L29 94 Q29 84 38 84 Q47 84 47 95 L47 108 L49 59 Q50 49 59 50 Q68 51 67 62 L66 103 L71 43 Q72 33 81 35 Q90 37 88 48 L84 106 L94 62 Q97 53 105 57 Q113 61 109 72 L99 119 L110 100 Q116 92 123 98 Q130 104 123 114 L107 151 Q101 164 85 165 L51 163 Q35 161 29 130Z"/>
-            <path d="M191 130 L191 94 Q191 84 182 84 Q173 84 173 95 L173 108 L171 59 Q170 49 161 50 Q152 51 153 62 L154 103 L149 43 Q148 33 139 35 Q130 37 132 48 L136 106 L126 62 Q123 53 115 57 Q107 61 111 72 L121 119 L110 100 Q104 92 97 98 Q90 104 97 114 L113 151 Q119 164 135 165 L169 163 Q185 161 191 130Z" opacity=".95"/>
-          </g>
-          <path d="M85 177 Q110 185 135 177" fill="none" stroke="#55bcb2" stroke-width="4" stroke-linecap="round"/>
-        </svg>
-        <div id="handMotionLabel" class="small muted">Movimento esquemático</div>
-      </div>
-      <div class="demo-copy">
-        <div id="stepCounter" class="step-counter">ETAPA 1 DE 6</div>
-        <h3 id="stepTitle">Palma com palma</h3>
-        <p id="stepText">Friccione as palmas das mãos entre si, cobrindo toda a superfície.</p>
-        <div class="controls"><button id="prevStep" class="secondary" onclick="changeStep(-1)">← Anterior</button><button id="nextStep" class="primary" onclick="changeStep(1)">Próxima etapa →</button></div>
-      </div>
+<section class="secao clara">
+  <div class="container">
+    <div class="titulo">
+      <span class="etiqueta">ESCOLHA SUA TRILHA</span>
+      <h2>Conhecimento que protege</h2>
+      <p>Conteúdo para profissionais, pacientes e acompanhantes.</p>
     </div>
-    <p class="notice" style="margin-top:22px">A técnica deve cobrir palmas, dorsos, espaços entre os dedos, dorso dos dedos, polegares e pontas dos dedos. Respeite a duração indicada e as instruções do produto e da instituição.</p>
-  </section>
 
-  <section class="panel">
-    <span class="eyebrow">Os cinco momentos</span><h2>Quando higienizar na assistência?</h2>
-    <p class="muted">Selecione um momento para ver uma situação ilustrativa.</p>
-    <div class="moments" id="moments"></div>
-    <div class="moment-detail" id="momentDetail" aria-live="polite"></div>
-  </section>
+    <div class="grade">
+      <article class="cartao" id="trilha-profissional">
+        <div class="icone">🩺</div>
+        <h3>Trilha do profissional</h3>
+        <p>A higiene das mãos é uma medida essencial para prevenir infecções relacionadas à assistência à saúde.</p>
+        <span class="tag">Técnica correta</span>
+        <span class="tag">Cinco momentos</span>
+        <span class="tag">Prevenção de IRAS</span>
+        <ul>
+          <li>Higienize nos momentos indicados.</li>
+          <li>Não esqueça polegares, pontas dos dedos e espaços entre os dedos.</li>
+          <li>Luvas não substituem a higiene das mãos.</li>
+        </ul>
+        <button class="botao" onclick="ir('tecnica')">Ver técnica</button>
+        <button class="botao claro" onclick="ir('quiz-prof')">Fazer quiz</button>
+      </article>
 
-  <section class="panel">
-    <div class="panel-head"><div><span class="eyebrow">Simulador de decisões</span><h2>Plantão seguro</h2></div><span class="badge">MISSÃO 2</span></div>
-    <p class="muted">Leia a situação e escolha a ação mais adequada. Cada cenário é educativo; na prática, siga o protocolo institucional.</p>
-    <div class="scenario" id="scenarioBox"></div>
-  </section>
-
-  <section class="panel">
-    <div class="panel-head"><div><span class="eyebrow">Conquistas educativas</span><h2>Seu progresso</h2></div><span class="badge">APRENDER • PRATICAR • CUIDAR</span></div>
-    <div class="stats">
-      <div class="stat"><strong id="score">0</strong><span class="small">Pontos educativos</span></div>
-      <div class="stat"><strong id="completed">0/3</strong><span class="small">Missões concluídas</span></div>
-      <div class="stat"><strong id="medalCount">0</strong><span class="small">Medalhas conquistadas</span></div>
+      <article class="cartao" id="trilha-paciente">
+        <div class="icone">💚</div>
+        <h3>Trilha do paciente e acompanhante</h3>
+        <p>Você também pode participar do cuidado, higienizando as mãos e conversando com a equipe quando tiver dúvidas.</p>
+        <span class="tag">Autocuidado</span>
+        <span class="tag">Prevenção</span>
+        <span class="tag">Participação</span>
+        <ul>
+          <li>Higienize as mãos antes das refeições.</li>
+          <li>Lave as mãos depois de usar o banheiro.</li>
+          <li>Peça ajuda se tiver dificuldade.</li>
+        </ul>
+        <button class="botao coral" onclick="ir('dicas-paciente')">Ver dicas</button>
+        <button class="botao claro" onclick="ir('quiz-paciente')">Fazer quiz</button>
+      </article>
     </div>
-    <div class="missions" id="missions"></div>
-    <p class="small muted" style="margin-top:14px">O progresso é demonstrativo e permanece nesta página enquanto ela estiver aberta. Não é certificado profissional nem avaliação de competência clínica.</p>
-  </section>
-
-  <section class="panel">
-    <span class="eyebrow">Fontes para aprofundar</span><h2>Referências — profissionais</h2>
-    <ul class="reference-list">
-      <li><a href="https://www.gov.br/anvisa/pt-br/assuntos/servicosdesaude/prevencao-e-controle-de-infeccao-e-resistencia-microbiana/higienizacao-das-maos-1/copy_of_higienizacao-das-maos" target="_blank" rel="noopener">ANVISA — Higienização das mãos</a></li>
-      <li><a href="https://www.gov.br/anvisa/pt-br/centraisdeconteudo/publicacoes/servicosdesaude/notas-tecnicas/notas-tecnicas-vigentes/nota-tecnica-gvims-ggtes-dire3-anvisa-no-05-2024" target="_blank" rel="noopener">ANVISA — Nota Técnica GVIMS/GGTES/DIRE3 nº 05/2024</a></li>
-      <li><a href="https://www.gov.br/saude/pt-br/composicao/saes/seguranca-do-paciente/protocolos-de-seguranca-do-paciente/protocolo-higiene-das-maos.pdf/view" target="_blank" rel="noopener">Ministério da Saúde — Protocolo de higiene das mãos</a></li>
-      <li><a href="https://www.who.int/teams/integrated-health-services/infection-prevention-control/hand-hygiene" target="_blank" rel="noopener">OMS — Hand hygiene</a></li>
-      <li><a href="https://www.who.int/publications/m/item/five-moments-for-hand-hygiene" target="_blank" rel="noopener">OMS — Five Moments for Hand Hygiene</a></li>
-      <li><a href="https://www.who.int/publications/m/item/how-to-handrub" target="_blank" rel="noopener">OMS — Como friccionar as mãos com preparação alcoólica</a></li>
-    </ul>
-    <p class="notice">Conteúdo educativo do PREVIRAS 2.0. A inclusão de referências não significa aprovação ou certificação da plataforma por essas instituições. Confirme atualizações e siga as normas locais.</p>
-  </section>
-</div>
+  </div>
 </section>
 
-<section id="patient" class="content-area">
-<div class="wrap">
-  <button class="back" onclick="goHome()">← Voltar ao início</button>
-  <div class="banner patient-banner">
-    <span class="eyebrow" style="color:var(--purple)">Trilha do paciente e acompanhante</span>
-    <h2>Você também faz parte da segurança</h2>
-    <p>Você pode participar do cuidado, fazer perguntas e pedir ajuda. A segurança é uma responsabilidade compartilhada entre equipe, paciente e acompanhante.</p>
+<section class="secao" id="tecnica">
+  <div class="container">
+    <div class="titulo">
+      <span class="etiqueta">GUIA VISUAL</span>
+      <h2>Como higienizar as mãos</h2>
+      <p>Use esta lista para revisar as regiões que precisam ser friccionadas.</p>
+    </div>
+
+    <div class="figura-tecnica">
+      <svg viewBox="0 0 600 220" role="img" aria-label="Duas mãos ilustradas com bolhas de sabão" style="max-width:420px">
+        <rect width="600" height="220" rx="25" fill="#e8f7ef"/>
+        <g fill="#8bd9ec">
+          <circle cx="110" cy="42" r="12"/><circle cx="475" cy="50" r="17"/>
+          <circle cx="520" cy="140" r="10"/><circle cx="80" cy="160" r="9"/>
+        </g>
+        <g fill="#ffb89d" stroke="#a85c4e" stroke-width="3" stroke-linejoin="round">
+          <path d="M85 168 L85 104 Q85 89 98 89 Q111 89 111 104 L111 69 Q111 54 124 54 Q137 54 137 69 L137 94 L137 59 Q137 44 150 44 Q163 44 163 59 L163 94 L163 76 Q163 62 176 62 Q189 62 189 76 L189 127 Q189 159 166 177 L147 192 L104 192Z"/>
+          <path d="M515 168 L515 104 Q515 89 502 89 Q489 89 489 104 L489 69 Q489 54 476 54 Q463 54 463 69 L463 94 L463 59 Q463 44 450 44 Q437 44 437 59 L437 94 L437 76 Q437 62 424 62 Q411 62 411 76 L411 127 Q411 159 434 177 L453 192 L496 192Z"/>
+        </g>
+        <g fill="#167d78" font-size="20" font-weight="bold">
+          <text x="300" y="90" text-anchor="middle">ÁGUA + SABONETE</text>
+          <text x="300" y="121" text-anchor="middle" font-size="16">Friccione todas as superfícies</text>
+          <text x="300" y="148" text-anchor="middle" font-size="16">e enxágue bem.</text>
+        </g>
+      </svg>
+      <h3>Seis regiões para lembrar</h3>
+      <div class="grade" style="text-align:left">
+        <div><strong>1. Palmas</strong><p>Palma contra palma.</p></div>
+        <div><strong>2. Dorso das mãos</strong><p>Palma sobre o dorso, dos dois lados.</p></div>
+        <div><strong>3. Entre os dedos</strong><p>Entrelace os dedos e friccione os espaços.</p></div>
+        <div><strong>4. Dorso dos dedos</strong><p>Friccione o dorso dos dedos contra a palma oposta.</p></div>
+        <div><strong>5. Polegares</strong><p>Friccione cada polegar com movimento de rotação.</p></div>
+        <div><strong>6. Pontas dos dedos e unhas</strong><p>Friccione as pontas dos dedos na palma oposta.</p></div>
+      </div>
+      <div class="aviso">
+        <strong>⏱️ Tempos de referência:</strong> água e sabonete, geralmente 40–60 segundos; preparação alcoólica, geralmente 20–30 segundos. Siga o protocolo institucional.
+        <br><br>Quando as mãos estiverem visivelmente sujas, lave com água e sabonete.
+      </div>
+    </div>
   </div>
-  <div class="cards">
-    <article class="card"><div class="emoji">🧼</div><h3>Cuide das suas mãos</h3><p>Higienize antes de comer, depois de usar o banheiro e sempre que estiverem sujas. Peça ajuda se precisar.</p></article>
-    <article class="card"><div class="emoji">💬</div><h3>Perguntar é participar</h3><p>Você pode perguntar com respeito se a equipe higienizou as mãos antes do cuidado. A equipe pode esclarecer dúvidas.</p></article>
-    <article class="card"><div class="emoji">🤝</div><h3>Ajude com segurança</h3><p>Siga as orientações do serviço e peça instruções antes de mexer em curativos, dispositivos ou equipamentos.</p></article>
+</section>
+
+<section class="secao clara" id="momentos">
+  <div class="container">
+    <div class="titulo">
+      <span class="etiqueta">PARA PROFISSIONAIS</span>
+      <h2>Os cinco momentos da higiene das mãos</h2>
+      <p>Os momentos são definidos pelo risco durante a assistência ao paciente.</p>
+    </div>
+    <div class="momentos">
+      <article class="momento"><span class="numero">1</span><h3>Antes de tocar o paciente</h3><p>Ajuda a proteger o paciente.</p></article>
+      <article class="momento"><span class="numero">2</span><h3>Antes de procedimento limpo ou asséptico</h3><p>Ajuda a evitar a introdução de microrganismos.</p></article>
+      <article class="momento"><span class="numero">3</span><h3>Após risco de exposição a fluidos corporais</h3><p>Ajuda a proteger o profissional e o ambiente.</p></article>
+      <article class="momento"><span class="numero">4</span><h3>Após tocar o paciente</h3><p>Reduz o risco de transmissão para outras pessoas.</p></article>
+      <article class="momento"><span class="numero">5</span><h3>Após tocar o entorno do paciente</h3><p>O ambiente próximo também pode estar contaminado.</p></article>
+    </div>
   </div>
+</section>
 
-  <section class="panel">
-    <span class="eyebrow" style="color:var(--purple)">Missão do paciente</span><h2>O que você faria?</h2>
-    <p class="muted">Escolha uma resposta para aprender com situações comuns.</p>
-    <div id="patientQuiz"></div>
-  </section>
+<section class="secao" id="dicas-paciente">
+  <div class="container">
+    <div class="titulo">
+      <span class="etiqueta">PARA PACIENTES E ACOMPANHANTES</span>
+      <h2>Você também faz parte do cuidado</h2>
+      <p>Participar é cuidar de si, tirar dúvidas e conversar com respeito.</p>
+    </div>
+    <div class="grade">
+      <article class="cartao"><div class="icone">🍽️</div><h3>Antes de comer</h3><p>Higienize as mãos antes das refeições e depois de usar o banheiro.</p></article>
+      <article class="cartao"><div class="icone">💬</div><h3>Perguntar é permitido</h3><p>Você pode perguntar à equipe onde higienizar as mãos ou pedir ajuda se tiver dificuldade.</p></article>
+      <article class="cartao"><div class="icone">🫧</div><h3>Observe suas mãos</h3><p>Se estiverem visivelmente sujas, lave com água e sabonete.</p></article>
+      <article class="cartao"><div class="icone">🤝</div><h3>Ajude com segurança</h3><p>Não toque em curativos, dispositivos ou materiais de assistência sem orientação da equipe.</p></article>
+    </div>
+  </div>
+</section>
 
-  <section class="panel">
-    <span class="eyebrow" style="color:var(--purple)">Lembretes para o dia a dia</span><h2>Quando higienizar minhas mãos?</h2>
-    <ul>
-      <li>Ao chegar ao serviço de saúde e quando sair, conforme as orientações do local.</li>
-      <li>Antes de comer e depois de usar o banheiro.</li>
-      <li>Depois de tossir, espirrar ou assoar o nariz.</li>
-      <li>Sempre que estiverem visivelmente sujas.</li>
-      <li>Antes e depois de ajudar outra pessoa, conforme a situação.</li>
-    </ul>
-    <p class="notice">Se você não consegue higienizar as mãos sozinho, peça ajuda à equipe de saúde ou ao acompanhante. Se tiver dúvidas, converse com os profissionais responsáveis pelo seu cuidado.</p>
-  </section>
-
-  <section class="panel">
-    <span class="eyebrow" style="color:var(--purple)">Mito ou verdade?</span><h2>Teste o que aprendeu</h2>
-    <div id="patientQuiz2"></div>
-  </section>
-
-  <section class="panel">
-    <span class="eyebrow" style="color:var(--purple)">Fontes para consultar</span><h2>Referências — pacientes e acompanhantes</h2>
-    <ul class="reference-list">
-      <li><a href="https://www.gov.br/anvisa/pt-br/assuntos/servicosdesaude/prevencao-e-controle-de-infeccao-e-resistencia-microbiana/higienizacao-das-maos-1/copy_of_higienizacao-das-maos" target="_blank" rel="noopener">ANVISA — Higienização das mãos</a></li>
-      <li><a href="https://www.gov.br/saude/pt-br/composicao/saes/seguranca-do-paciente" target="_blank" rel="noopener">Ministério da Saúde — Segurança do paciente</a></li>
-      <li><a href="https://www.who.int/teams/integrated-health-services/infection-prevention-control/hand-hygiene" target="_blank" rel="noopener">OMS — Higiene das mãos e prevenção de infecções</a></li>
-    </ul>
-    <p class="small muted">Material de educação em saúde; não substitui orientação individual da equipe assistencial.</p>
-  </section>
-</div>
+<section class="secao clara">
+  <div class="container">
+    <div class="titulo"><h2>Vamos testar o que você aprendeu?</h2><p>Responda aos quizzes e leia a explicação.</p></div>
+    <div class="quiz-grid">
+      <article class="cartao" id="quiz-prof">
+        <h3>🩺 Quiz profissional</h3>
+        <div id="q-prof" class="pergunta"></div>
+        <div id="a-prof"></div>
+        <div id="f-prof" class="feedback" aria-live="polite"></div>
+        <button class="botao" onclick="proxima('prof')">Próxima pergunta</button>
+      </article>
+      <article class="cartao" id="quiz-paciente">
+        <h3>💚 Quiz paciente e acompanhante</h3>
+        <div id="q-pac" class="pergunta"></div>
+        <div id="a-pac"></div>
+        <div id="f-pac" class="feedback" aria-live="polite"></div>
+        <button class="botao coral" onclick="proxima('pac')">Próxima pergunta</button>
+      </article>
+    </div>
+  </div>
 </section>
 </main>
 
-<footer class="footer">
-  <p><strong>PREVIRAS 2.0</strong> · Prevenir também é cuidar!</p>
-  <small>Projeto educativo. Não substitui protocolos institucionais, treinamento prático ou orientação de profissionais habilitados.</small>
+<section class="fontes" id="referencias">
+  <div class="container">
+    <span class="etiqueta">SAIBA MAIS</span>
+    <h2>Referências oficiais</h2>
+    <p>Consulte as fontes oficiais e os protocolos do serviço de saúde. O conteúdo deve ser revisado pela docente e pela instituição antes de uso institucional.</p>
+    <a href="https://www.gov.br/anvisa/pt-br/assuntos/servicosdesaude/prevencao-e-controle-de-infeccao-e-resistencia-microbiana/higienizacao-das-maos-1/copy_of_higienizacao-das-maos" target="_blank" rel="noopener">ANVISA — Higienização das mãos</a>
+    <a href="https://www.gov.br/anvisa/pt-br/centraisdeconteudo/publicacoes/servicosdesaude/notas-tecnicas/notas-tecnicas-vigentes/nota-tecnica-gvims-ggtes-dire3-anvisa-no-05-2024" target="_blank" rel="noopener">ANVISA — Nota Técnica nº 05/2024</a>
+    <a href="https://www.gov.br/saude/pt-br/composicao/saes/seguranca-do-paciente/protocolos-de-seguranca-do-paciente/protocolo-higiene-das-maos.pdf/view" target="_blank" rel="noopener">Ministério da Saúde — Protocolo de higiene das mãos</a>
+    <a href="https://www.who.int/publications/m/item/how-to-handrub" target="_blank" rel="noopener">OMS — Como friccionar as mãos com preparação alcoólica</a>
+    <a href="https://www.who.int/publications/m/item/five-moments-for-hand-hygiene" target="_blank" rel="noopener">OMS — Cinco momentos para higiene das mãos</a>
+    <a href="https://www.who.int/teams/integrated-health-services/infection-prevention-control/hand-hygiene" target="_blank" rel="noopener">OMS — Portal de higiene das mãos</a>
+  </div>
+</section>
+
+<footer>
+  PREVIRAS 2.0 · Educação em saúde e prevenção de IRAS<br>
+  Material educativo. Siga sempre as orientações e os protocolos institucionais.
 </footer>
 
 <script>
-const steps=[
- {title:"Palma com palma",text:"Friccione as palmas das mãos entre si, cobrindo toda a superfície.",motion:"Movimento entre as palmas"},
- {title:"Palma sobre o dorso",text:"Friccione a palma direita sobre o dorso esquerdo com os dedos entrelaçados; repita do outro lado.",motion:"Dorso de cada mão"},
- {title:"Entre os dedos",text:"Friccione palma com palma com os dedos entrelaçados para alcançar os espaços entre eles.",motion:"Espaços interdigitais"},
- {title:"Dorso dos dedos",text:"Friccione o dorso dos dedos contra a palma oposta, com os dedos unidos; alterne as mãos.",motion:"Dorso dos dedos"},
- {title:"Polegares",text:"Friccione cada polegar com movimento de rotação, segurando-o com a palma oposta.",motion:"Movimento nos polegares"},
- {title:"Pontas dos dedos",text:"Friccione as pontas dos dedos em movimento circular na palma oposta; alterne as mãos.",motion:"Pontas dos dedos e unhas"}
-];
-let currentStep=0;
-const progress=new Set();
-const missionDone=new Set();
-let score=0;
-const missionInfo=[
- {id:"technique",icon:"🫧",name:"Explorador da técnica",desc:"Revise as seis etapas da higienização."},
- {id:"moments",icon:"🖐️",name:"Guardião dos momentos",desc:"Explore os cinco momentos de higiene."},
- {id:"scenario",icon:"🏥",name:"Decisão segura",desc:"Responda ao cenário do plantão."}
-];
-function openArea(id){
- document.getElementById("home").classList.add("hidden");
- document.querySelectorAll(".content-area").forEach(el=>el.classList.remove("active"));
- document.getElementById(id).classList.add("active");
- window.scrollTo({top:0,behavior:"smooth"});
+function ir(id){
+  document.getElementById(id).scrollIntoView({behavior:"smooth",block:"start"});
 }
-function goHome(){
- document.querySelectorAll(".content-area").forEach(el=>el.classList.remove("active"));
- document.getElementById("home").classList.remove("hidden");
- window.scrollTo({top:0,behavior:"smooth"});
-}
-function renderStep(){
- const s=steps[currentStep];
- document.getElementById("stepCounter").textContent=`ETAPA ${currentStep+1} DE ${steps.length}`;
- document.getElementById("stepTitle").textContent=s.title;
- document.getElementById("stepText").textContent=s.text;
- document.getElementById("handMotionLabel").textContent=s.motion;
- document.getElementById("prevStep").disabled=currentStep===0;
- document.getElementById("nextStep").textContent=currentStep===steps.length-1?"Concluir missão ✓":"Próxima etapa →";
- document.getElementById("stepProgress").innerHTML=steps.map((_,i)=>`<span class="step-bar ${i<=currentStep?"done":""}"></span>`).join("");
- document.getElementById("handIllustration").style.animationDuration=(1.1+currentStep*.12)+"s";
-}
-function changeStep(dir){
- if(dir===1 && currentStep===steps.length-1){
-  if(!missionDone.has("technique")){missionDone.add("technique");score+=10;updateMissions();}
-  currentStep=0;
- }else currentStep=Math.max(0,Math.min(steps.length-1,currentStep+dir));
- renderStep();
-}
-const moments=[
- {title:"1. Antes de tocar o paciente",detail:"Exemplo: antes de ajudar a pessoa a se movimentar ou iniciar o contato assistencial. Higienize as mãos antes do contato."},
- {title:"2. Antes de procedimento limpo/asséptico",detail:"Exemplo: antes de manipular um dispositivo ou realizar um procedimento asséptico. Prepare as mãos conforme o protocolo."},
- {title:"3. Após risco de exposição a fluidos",detail:"Exemplo: depois de uma atividade com possível exposição a fluidos corporais. Higienize as mãos após a exposição ou retirada das luvas, conforme a situação."},
- {title:"4. Após tocar o paciente",detail:"Exemplo: ao terminar o contato direto com a pessoa, higienize as mãos."},
- {title:"5. Após tocar o entorno do paciente",detail:"Exemplo: depois de tocar grades, mesa de cabeceira ou objetos próximos ao paciente, mesmo sem contato direto com ele."}
-];
-function renderMoments(){
- const box=document.getElementById("moments");
- box.innerHTML=moments.map((m,i)=>`<button class="moment" aria-pressed="${i===0}" data-i="${i}"><strong>MOMENTO ${i+1}</strong>${m.title.replace(/^\d\.\s/,"")}</button>`).join("");
- box.querySelectorAll("button").forEach(btn=>btn.addEventListener("click",()=>{
-  const i=Number(btn.dataset.i);
-  box.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",String(b===btn)));
-  document.getElementById("momentDetail").textContent=moments[i].detail;
-  if(!progress.has(i)){progress.add(i);if(progress.size===5&&!missionDone.has("moments")){missionDone.add("moments");score+=10;updateMissions();}}
- }));
- document.getElementById("momentDetail").textContent=moments[0].detail;
-}
-const scenarios=[
- {q:"Você vai iniciar um procedimento limpo/asséptico. Qual é a conduta mais adequada?",options:["Higienizar as mãos antes do procedimento, conforme protocolo","Colocar luvas e dispensar a higiene das mãos","Higienizar somente ao fim do plantão"],answer:0,why:"A higiene das mãos antes de um procedimento limpo/asséptico é um dos cinco momentos essenciais. Luvas não substituem a higiene."},
- {q:"Após retirar as luvas usadas no cuidado, o que deve fazer?",options:["Nada, porque as luvas protegem completamente","Higienizar as mãos conforme a indicação e o protocolo","Apenas enxaguar as luvas"],answer:1,why:"Luvas podem ter microperfurações ou contaminar as mãos durante a retirada. Higienize as mãos nos momentos indicados."},
- {q:"Você observa que suas mãos estão visivelmente sujas. Qual método é indicado?",options:["Água e sabonete","Preparação alcoólica como única opção","Somente trocar de luvas"],answer:0,why:"Quando as mãos estão visivelmente sujas, a lavagem com água e sabonete é indicada."}
-];
-let scenarioIndex=0,scenarioAnswered=false;
-function renderScenario(){
- const s=scenarios[scenarioIndex],box=document.getElementById("scenarioBox");
- box.innerHTML=`<div class="step-counter">CENÁRIO ${scenarioIndex+1} DE ${scenarios.length}</div><h3>${s.q}</h3><div class="scenario-options">${s.options.map((o,i)=>`<button class="option" data-i="${i}">${o}</button>`).join("")}</div><div class="feedback" aria-live="polite"></div><div class="controls"><button class="primary hidden" id="scenarioNext">${scenarioIndex===scenarios.length-1?"Finalizar missão":"Próximo cenário →"}</button></div>`;
- box.querySelectorAll(".option").forEach(btn=>btn.addEventListener("click",()=>{
-  if(scenarioAnswered)return;scenarioAnswered=true;
-  const correct=Number(btn.dataset.i)===s.answer;
-  if(correct)score+=5;
-  box.querySelectorAll(".option").forEach(b=>b.disabled=true);
-  const fb=box.querySelector(".feedback");fb.className="feedback show "+(correct?"good":"bad");
-  fb.textContent=(correct?"✅ Resposta adequada. ":"💡 Revise a conduta. ")+s.why;
-  box.querySelector("#scenarioNext").classList.remove("hidden");updateMissions();
- }));
- box.querySelector("#scenarioNext").addEventListener("click",()=>{
-  if(scenarioIndex===scenarios.length-1){
-   if(!missionDone.has("scenario")){missionDone.add("scenario");score+=10;}
-   scenarioIndex=0;scenarioAnswered=false;renderScenario();updateMissions();
-  }else{scenarioIndex++;scenarioAnswered=false;renderScenario();}
- });
-}
-function updateMissions(){
- document.getElementById("score").textContent=score;
- document.getElementById("completed").textContent=`${missionDone.size}/3`;
- document.getElementById("medalCount").textContent=missionDone.size;
- document.getElementById("missions").innerHTML=missionInfo.map(m=>`<article class="mission ${missionDone.has(m.id)?"done":""}"><div class="medal">${missionDone.has(m.id)?"🏅":m.icon}</div><h3>${m.name}</h3><p>${missionDone.has(m.id)?"Missão concluída!":m.desc}</p></article>`).join("");
-}
-const patientQuestions=[
- {q:"Verdadeiro ou falso: posso perguntar respeitosamente se a equipe higienizou as mãos antes do cuidado.",options:["Verdadeiro","Falso"],answer:0,why:"Você pode participar do cuidado e esclarecer dúvidas com a equipe."},
- {q:"Se minhas mãos estiverem visivelmente sujas, o que devo fazer?",options:["Ignorar","Lavar com água e sabonete","Passar apenas um pano seco"],answer:1,why:"Água e sabonete são indicados quando as mãos estão visivelmente sujas."}
-];
-const patientQuestions2=[
- {q:"Preciso mexer em um curativo ou dispositivo do paciente?",options:["Mexer sem perguntar","Pedir orientação à equipe antes de mexer","Retirar para conferir"],answer:1,why:"Curativos e dispositivos exigem cuidados específicos. Peça orientação à equipe."},
- {q:"Não consigo higienizar minhas mãos sozinho. O que posso fazer?",options:["Deixar de higienizar","Pedir ajuda à equipe ou ao acompanhante","Usar qualquer produto disponível"],answer:1,why:"Peça ajuda e siga as orientações do serviço de saúde."}
-];
-function makeQuiz(id,questions){
- const root=document.getElementById(id);let n=0,points=0,answered=false;
- function render(){
-  if(n>=questions.length){root.innerHTML=`<h3>🎉 Atividade concluída!</h3><p>Acertos: <strong>${points} de ${questions.length}</strong>.</p><button class="primary" type="button">Tentar novamente</button>`;root.querySelector("button").addEventListener("click",()=>{n=0;points=0;answered=false;render()});return;}
-  const q=questions[n];
-  root.innerHTML=`<div class="step-counter">PERGUNTA ${n+1} DE ${questions.length}</div><p><strong>${q.q}</strong></p><div class="quiz-options">${q.options.map((o,i)=>`<button class="option" data-i="${i}">${o}</button>`).join("")}</div><div class="feedback" aria-live="polite"></div><div class="controls"><button class="primary hidden" id="${id}Next">${n===questions.length-1?"Ver resultado":"Próxima pergunta →"}</button></div>`;
-  root.querySelectorAll(".option").forEach(btn=>btn.addEventListener("click",()=>{
-   if(answered)return;answered=true;const ok=Number(btn.dataset.i)===q.answer;if(ok)points++;
-   root.querySelectorAll(".option").forEach(b=>b.disabled=true);
-   const fb=root.querySelector(".feedback");fb.className="feedback show "+(ok?"good":"bad");fb.textContent=(ok?"✅ Muito bem! ":"💡 Vamos aprender: ")+q.why;
-   root.querySelector("#"+id+"Next").classList.remove("hidden");
-  }));
-  root.querySelector("#"+id+"Next").addEventListener("click",()=>{n++;answered=false;render()});
+const dados={
+ prof:[
+  {q:"1. Usar luvas elimina a necessidade de higienizar as mãos?",op:["Sim, sempre.","Não. A higiene continua necessária nos momentos indicados.","Só é necessário higienizar no início do plantão."],c:1,e:"Luvas não substituem a higiene das mãos. Higienize nos momentos indicados, inclusive após retirar as luvas."},
+  {q:"2. Qual é um dos cinco momentos?",op:["Antes de tocar o paciente.","Somente no fim do plantão.","Apenas quando as mãos parecem sujas."],c:0,e:"Antes de tocar o paciente é um dos cinco momentos recomendados pela OMS."},
+  {q:"3. Quando as mãos estão visivelmente sujas, o que fazer?",op:["Usar somente preparação alcoólica.","Lavar com água e sabonete.","Colocar luvas sem higienizar."],c:1,e:"A sujeira visível indica lavagem com água e sabonete."}
+ ],
+ pac:[
+  {q:"1. Se você tiver dúvidas, o que pode fazer?",op:["Perguntar à equipe e pedir orientação.","Ficar em silêncio sempre.","Mexer nos materiais para conferir."],c:0,e:"Você pode conversar com respeito com a equipe e pedir orientação."},
+  {q:"2. Quando é importante higienizar as mãos?",op:["Antes das refeições e depois do banheiro.","Só uma vez por dia.","Apenas quando alguém pedir."],c:0,e:"Higienizar antes de comer e depois de usar o banheiro ajuda a prevenir a transmissão de microrganismos."},
+  {q:"3. Se suas mãos estiverem visivelmente sujas, o que fazer?",op:["Usar apenas álcool.","Lavar com água e sabonete.","Não fazer nada."],c:1,e:"Quando há sujeira visível, lave com água e sabonete."}
+ ]
+};
+const estado={
+ prof:{i:0,respostas:[],pontos:0},
+ pac:{i:0,respostas:[],pontos:0}
+};
+function desenhar(tipo){
+ const s=estado[tipo],lista=dados[tipo],pac=tipo==="pac";
+ const q=document.getElementById(pac?"q-pac":"q-prof");
+ const a=document.getElementById(pac?"a-pac":"a-prof");
+ const f=document.getElementById(pac?"f-pac":"f-prof");
+ a.innerHTML="";
+ if(s.i>=lista.length){
+   q.textContent="Você concluiu o quiz: "+s.pontos+" de "+lista.length+" acertos!";
+   f.textContent=s.pontos===lista.length?"Excelente! Continue praticando o que aprendeu.":"Muito bem por participar! Revise o conteúdo e tente novamente.";
+   const b=document.createElement("button");b.className="botao";b.textContent="Refazer quiz";
+   b.onclick=()=>{estado[tipo]={i:0,respostas:[],pontos:0};desenhar(tipo)};
+   a.appendChild(b);return;
  }
- render();
+ const item=lista[s.i];q.textContent=item.q;
+ item.op.forEach((op,i)=>{
+   const b=document.createElement("button");b.className="resposta";b.textContent=op;
+   if(s.respostas[s.i]!==undefined){
+     b.disabled=true;
+     if(i===item.c)b.classList.add("certa");
+     if(i===s.respostas[s.i]&&i!==item.c)b.classList.add("errada");
+   }
+   b.onclick=()=>{
+     if(s.respostas[s.i]!==undefined)return;
+     s.respostas[s.i]=i;
+     if(i===item.c)s.pontos++;
+     desenhar(tipo);
+     document.getElementById(pac?"f-pac":"f-prof").textContent=(i===item.c?"✅ Correto! ":"💡 ") + item.e;
+   };
+   a.appendChild(b);
+ });
+ f.textContent=s.respostas[s.i]===undefined?"Escolha uma resposta para ver a explicação.":item.e;
 }
-renderStep();renderMoments();renderScenario();updateMissions();
-makeQuiz("patientQuiz",patientQuestions);
-makeQuiz("patientQuiz2",patientQuestions2);
+function proxima(tipo){
+ const s=estado[tipo];
+ if(s.respostas[s.i]===undefined){alert("Escolha uma resposta antes de avançar.");return;}
+ s.i++;desenhar(tipo);
+}
+desenhar("prof");
+desenhar("pac");
 </script>
 </body>
 </html>
