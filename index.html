@@ -1,0 +1,457 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#087f8c">
+  <meta name="description" content="PREVIRAS 2.0 — Educação em saúde, higienização das mãos e prevenção de infecções.">
+  <title>PREVIRAS 2.0 | Prevenir também é cuidar</title>
+  <style>
+    :root {
+      --teal: #087f8c;
+      --blue: #2864dc;
+      --purple: #7651c9;
+      --pink: #ff7196;
+      --yellow: #ffd166;
+      --ink: #203044;
+      --muted: #637186;
+      --paper: #f6f9ff;
+      --white: #ffffff;
+      --green: #23865b;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+      line-height: 1.6;
+    }
+    button { font: inherit; cursor: pointer; }
+    button:focus-visible, a:focus-visible {
+      outline: 3px solid var(--yellow);
+      outline-offset: 4px;
+    }
+    .topbar {
+      padding: 15px 6%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      background: white;
+      border-bottom: 1px solid #e7edf5;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 900; }
+    .brand-icon {
+      display: grid; place-items: center;
+      width: 44px; height: 44px; border-radius: 15px;
+      background: #d8f5f0; font-size: 25px;
+    }
+    .brand small { display: block; color: var(--muted); font-weight: 500; }
+    .top-tag {
+      background: #e7f7f5; color: var(--teal);
+      border-radius: 99px; padding: 6px 12px;
+      font-size: .8rem; font-weight: 800;
+    }
+    .hero {
+      position: relative; overflow: hidden;
+      padding: 65px 6% 55px;
+      background: linear-gradient(125deg, #dff8f3, #e8edff 65%, #f9e5f1);
+    }
+    .hero-inner {
+      max-width: 1120px; margin: auto;
+      display: grid; grid-template-columns: 1.2fr .8fr;
+      align-items: center; gap: 35px;
+    }
+    .eyebrow {
+      display: inline-block; color: var(--teal);
+      font-weight: 900; letter-spacing: .08em;
+      text-transform: uppercase; font-size: .78rem;
+    }
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 4.6rem);
+      letter-spacing: -.055em; line-height: 1.05;
+      margin: 13px 0 20px;
+    }
+    h1 span { color: var(--teal); }
+    .hero p { max-width: 620px; color: #4c5b70; font-size: 1.1rem; }
+    .hero-art {
+      min-height: 255px; display: grid; place-items: center;
+      position: relative;
+    }
+    .art-circle {
+      width: min(270px, 75vw); aspect-ratio: 1;
+      display: grid; place-items: center; border-radius: 45% 55% 60% 40%;
+      background: linear-gradient(140deg, #ffffff, #c8f3e9);
+      box-shadow: 0 20px 50px #5474a51c;
+      font-size: clamp(6rem, 15vw, 9rem);
+      transform: rotate(-5deg);
+    }
+    .floating {
+      position: absolute; background: white; border-radius: 18px;
+      padding: 10px 14px; box-shadow: 0 8px 25px #354a6517;
+      font-weight: 800; font-size: .85rem;
+    }
+    .float-one { top: 15px; right: 0; }
+    .float-two { bottom: 12px; left: 0; }
+    .container { width: min(1120px, 88%); margin: auto; }
+    .section { padding: 54px 0; }
+    .section-heading { text-align: center; margin: 0 auto 28px; max-width: 700px; }
+    h2 { font-size: clamp(1.7rem, 4vw, 2.5rem); line-height: 1.15; margin: 8px 0 12px; }
+    .section-heading p, .muted { color: var(--muted); }
+    .path-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .path-card {
+      text-align: left; border: 2px solid transparent; border-radius: 25px;
+      padding: 25px; background: white; color: var(--ink);
+      box-shadow: 0 10px 30px #253a5910; transition: .2s;
+    }
+    .path-card:hover { transform: translateY(-4px); border-color: #b6e9e4; }
+    .path-card.patient:hover { border-color: #e2d3ff; }
+    .path-icon {
+      width: 60px; height: 60px; border-radius: 20px;
+      display: grid; place-items: center; font-size: 30px;
+      background: #ddf7f0; margin-bottom: 15px;
+    }
+    .patient .path-icon { background: #eee5ff; }
+    .path-card h3 { font-size: 1.3rem; margin: 0 0 8px; }
+    .path-card p { color: var(--muted); margin: 0 0 18px; }
+    .action-link { color: var(--teal); font-weight: 900; }
+    .patient .action-link { color: var(--purple); }
+    .pill-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 25px; }
+    .pill { background: white; border: 1px solid #e5eaf3; border-radius: 99px; padding: 8px 13px; font-size: .85rem; }
+    .content-area { display: none; padding: 36px 0 65px; }
+    .content-area.active { display: block; }
+    .back-button, .secondary-button {
+      border: 1px solid #dce5f0; background: white; color: var(--ink);
+      padding: 10px 15px; border-radius: 12px; font-weight: 800;
+    }
+    .area-banner {
+      padding: 28px; border-radius: 24px; margin: 22px 0;
+      background: linear-gradient(120deg, #dff8f3, #e4edff);
+    }
+    .patient-banner { background: linear-gradient(120deg, #f3e7ff, #ffe8ef); }
+    .area-banner h2 { margin-top: 0; }
+    .topic-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 20px 0; }
+    .topic {
+      background: white; border: 1px solid #e5ebf4;
+      border-radius: 18px; padding: 19px;
+    }
+    .topic .emoji { font-size: 1.8rem; }
+    .topic h3 { font-size: 1.05rem; margin: 7px 0; }
+    .topic p { color: var(--muted); font-size: .92rem; }
+    .learn-panel {
+      background: white; border: 1px solid #e5ebf4;
+      border-radius: 24px; padding: clamp(18px, 4vw, 30px); margin-top: 22px;
+    }
+    .step-progress { display: flex; gap: 6px; margin: 18px 0; }
+    .progress-segment { height: 7px; flex: 1; border-radius: 9px; background: #e8edf4; }
+    .progress-segment.done { background: var(--teal); }
+    .step-counter { color: var(--teal); font-weight: 900; font-size: .85rem; }
+    .step-layout { display: grid; grid-template-columns: .85fr 1.15fr; gap: 25px; align-items: center; }
+    .hand-stage {
+      min-height: 220px; display: grid; place-items: center;
+      border-radius: 20px; background: #effaf8; overflow: hidden;
+    }
+    .hands { font-size: clamp(4.5rem, 10vw, 7rem); letter-spacing: -18px; text-align: center; }
+    .arrows { color: var(--teal); font-size: 2rem; text-align: center; animation: move 1.1s ease-in-out infinite alternate; }
+    @keyframes move { from { transform: translateX(-9px); } to { transform: translateX(9px); } }
+    .step-layout h3 { font-size: 1.5rem; margin: 8px 0; }
+    .step-layout p { color: var(--muted); }
+    .controls { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+    .primary-button {
+      border: 0; border-radius: 13px; background: var(--teal);
+      color: white; font-weight: 900; padding: 12px 18px;
+    }
+    .primary-button:hover { filter: brightness(.94); }
+    .quiz-question { font-weight: 900; font-size: 1.12rem; }
+    .quiz-options { display: grid; gap: 10px; margin-top: 15px; }
+    .quiz-option {
+      padding: 13px 15px; border: 1px solid #dfe7f0;
+      background: #fbfcff; color: var(--ink); border-radius: 13px; text-align: left;
+    }
+    .quiz-option:hover { border-color: var(--teal); }
+    .quiz-option:disabled { cursor: default; opacity: 1; }
+    .feedback { padding: 13px; border-radius: 12px; margin-top: 14px; display: none; }
+    .feedback.show { display: block; }
+    .feedback.good { background: #e2f7eb; color: #17613c; }
+    .feedback.bad { background: #fff0df; color: #874c0b; }
+    .notice { border-left: 4px solid var(--yellow); background: #fff9e8; padding: 14px 17px; border-radius: 0 12px 12px 0; color: #634c19; font-size: .92rem; }
+    .footer { padding: 28px 6%; text-align: center; background: #203044; color: white; }
+    .footer p { margin: 5px 0; }
+    .footer small { color: #cbd5e1; }
+    .hidden { display: none !important; }
+
+    @media (max-width: 760px) {
+      .hero { padding-top: 42px; }
+      .hero-inner, .step-layout { grid-template-columns: 1fr; }
+      .hero-art { min-height: 220px; }
+      .art-circle { width: 205px; }
+      .path-grid { grid-template-columns: 1fr; }
+      .topic-grid { grid-template-columns: 1fr; }
+      .top-tag { display: none; }
+      .step-layout { gap: 16px; }
+      .hand-stage { min-height: 175px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-icon" aria-hidden="true">✚</div>
+      <div>PREVIRAS <span style="color:var(--teal)">2.0</span><small>Educação que protege</small></div>
+    </div>
+    <div class="top-tag">Prevenir também é cuidar!</div>
+  </header>
+
+  <main>
+    <section id="home">
+      <div class="hero">
+        <div class="hero-inner">
+          <div>
+            <span class="eyebrow">Conhecimento • Cuidado • Segurança</span>
+            <h1>Pequenas atitudes.<br><span>Grande proteção.</span></h1>
+            <p>Aprenda de forma leve e interativa como a higienização das mãos ajuda a prevenir infecções e proteger todo mundo.</p>
+          </div>
+          <div class="hero-art" aria-label="Ilustração simbólica de cuidado">
+            <div class="art-circle" aria-hidden="true">🫧🤲</div>
+            <div class="floating float-one">🛡️ Mais segurança</div>
+            <div class="floating float-two">💧 Higiene das mãos</div>
+          </div>
+        </div>
+      </div>
+
+      <section class="section container">
+        <div class="section-heading">
+          <span class="eyebrow">Escolha seu caminho</span>
+          <h2>O cuidado é de todos</h2>
+          <p>Conteúdos pensados para quem trabalha na saúde e para quem recebe ou acompanha o cuidado.</p>
+        </div>
+        <div class="path-grid">
+          <button class="path-card" onclick="openArea('professional')">
+            <div class="path-icon" aria-hidden="true">🩺</div>
+            <h3>SOU PROFISSIONAL</h3>
+            <p>Relembre práticas de higiene das mãos e prevenção de infecções na assistência à saúde.</p>
+            <span class="action-link">Acessar conteúdo →</span>
+          </button>
+          <button class="path-card patient" onclick="openArea('patient')">
+            <div class="path-icon" aria-hidden="true">💜</div>
+            <h3>SOU PACIENTE/ACOMPANHANTE</h3>
+            <p>Descubra como participar do cuidado com segurança e conversar com a equipe de saúde.</p>
+            <span class="action-link">Acessar conteúdo →</span>
+          </button>
+        </div>
+        <div class="pill-row">
+          <span class="pill">📱 Feito para celular</span>
+          <span class="pill">🎯 Aprendizagem interativa</span>
+          <span class="pill">🤝 Cuidado compartilhado</span>
+        </div>
+      </section>
+    </section>
+
+    <section id="professional" class="content-area">
+      <div class="container">
+        <button class="back-button" onclick="goHome()">← Voltar ao início</button>
+        <div class="area-banner">
+          <span class="eyebrow">Trilha do profissional</span>
+          <h2>Segurança começa nas mãos</h2>
+          <p>Revise momentos essenciais, técnica e escolhas seguras para a assistência. Siga os protocolos institucionais e as orientações vigentes.</p>
+        </div>
+        <div class="topic-grid">
+          <article class="topic"><div class="emoji">🧼</div><h3>Quando higienizar?</h3><p>Antes de tocar o paciente, antes de procedimento limpo/asséptico, após risco de exposição a fluidos, após tocar o paciente e após tocar superfícies próximas a ele.</p></article>
+          <article class="topic"><div class="emoji">💧</div><h3>Água e sabonete</h3><p>Use quando as mãos estiverem visivelmente sujas e nas situações indicadas pelos protocolos. Molhe, ensaboe, friccione todas as superfícies, enxágue e seque.</p></article>
+          <article class="topic"><div class="emoji">🫧</div><h3>Preparação alcoólica</h3><p>Quando indicada, aplique quantidade suficiente para cobrir todas as superfícies e friccione até secar. Siga a orientação do produto e do serviço.</p></article>
+        </div>
+        <div class="learn-panel">
+          <span class="eyebrow">Demonstração educativa</span>
+          <h2>Pratique os movimentos</h2>
+          <p class="muted">Avance pelas etapas para revisar as principais superfícies das mãos. Os símbolos são esquemáticos; não substituem uma demonstração prática supervisionada.</p>
+          <div class="step-progress" id="stepProgress" aria-label="Progresso das etapas"></div>
+          <div class="step-layout">
+            <div class="hand-stage">
+              <div>
+                <div class="hands" id="handEmoji" aria-hidden="true">🤲</div>
+                <div class="arrows" id="handArrows" aria-hidden="true">↔ ↔</div>
+              </div>
+            </div>
+            <div>
+              <div class="step-counter" id="stepCounter">ETAPA 1 DE 6</div>
+              <h3 id="stepTitle">Palma com palma</h3>
+              <p id="stepText">Friccione as palmas das mãos entre si.</p>
+              <div class="controls">
+                <button class="secondary-button" id="prevStep" onclick="changeStep(-1)">← Anterior</button>
+                <button class="primary-button" id="nextStep" onclick="changeStep(1)">Próxima etapa →</button>
+              </div>
+            </div>
+          </div>
+          <p class="notice" style="margin-top:24px">Tempo de referência: a fricção com preparação alcoólica costuma durar 20–30 segundos; a lavagem com água e sabonete, 40–60 segundos. Siga as orientações oficiais e o protocolo do serviço.</p>
+        </div>
+        <div class="learn-panel" id="professionalQuiz">
+          <span class="eyebrow">Desafio rápido</span>
+          <h2>Teste seu conhecimento</h2>
+          <div id="quizContent"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="patient" class="content-area">
+      <div class="container">
+        <button class="back-button" onclick="goHome()">← Voltar ao início</button>
+        <div class="area-banner patient-banner">
+          <span class="eyebrow" style="color:var(--purple)">Trilha do paciente e acompanhante</span>
+          <h2>Você também faz parte da segurança</h2>
+          <p>Participar do cuidado é um direito. Perguntar com respeito e higienizar as próprias mãos ajuda a criar um ambiente mais seguro.</p>
+        </div>
+        <div class="topic-grid">
+          <article class="topic"><div class="emoji">🧴</div><h3>Cuide das suas mãos</h3><p>Higienize as mãos ao chegar, antes de comer, após usar o banheiro e sempre que estiverem sujas.</p></article>
+          <article class="topic"><div class="emoji">💬</div><h3>Pode perguntar</h3><p>Você pode perguntar à equipe se ela já higienizou as mãos antes de prestar o cuidado. Faça isso de maneira respeitosa e sem receio.</p></article>
+          <article class="topic"><div class="emoji">🤝</div><h3>Ajude quem você acompanha</h3><p>Incentive a higiene das mãos, siga as orientações do serviço e peça ajuda se tiver dificuldade para higienizá-las.</p></article>
+        </div>
+        <div class="learn-panel">
+          <span class="eyebrow" style="color:var(--purple)">Mito ou verdade?</span>
+          <h2>Vamos aprender juntos</h2>
+          <div id="patientQuiz"></div>
+        </div>
+        <div class="learn-panel">
+          <h2>Quando devo higienizar minhas mãos?</h2>
+          <ul>
+            <li>Ao chegar e ao sair do serviço de saúde.</li>
+            <li>Antes de comer e depois de usar o banheiro.</li>
+            <li>Depois de tossir, espirrar ou assoar o nariz.</li>
+            <li>Sempre que estiverem visivelmente sujas.</li>
+            <li>Antes e depois de ajudar alguém, conforme a situação e as orientações da equipe.</li>
+          </ul>
+          <p class="notice">Se você não consegue higienizar as mãos sozinho, peça ajuda à equipe de saúde ou ao acompanhante.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p><strong>PREVIRAS 2.0</strong> • Prevenir também é cuidar!</p>
+    <small>Material educativo. Não substitui protocolos institucionais, treinamento prático ou orientação de profissionais habilitados.</small>
+  </footer>
+
+  <script>
+    const steps = [
+      { title: "Palma com palma", text: "Friccione as palmas das mãos entre si, cobrindo toda a superfície.", hands: "🤲", arrows: "↔ ↔" },
+      { title: "Palma sobre o dorso", text: "Friccione a palma direita sobre o dorso esquerdo, com os dedos entrelaçados; repita do outro lado.", hands: "🫱 🫲", arrows: "⇆" },
+      { title: "Entre os dedos", text: "Friccione palma com palma, com os dedos entrelaçados para limpar os espaços entre eles.", hands: "👐", arrows: "↔ ↔" },
+      { title: "Dorso dos dedos", text: "Friccione o dorso dos dedos contra a palma da mão oposta, com os dedos unidos; alterne as mãos.", hands: "🤜 🤛", arrows: "↻ ↺" },
+      { title: "Polegares", text: "Friccione cada polegar com movimento de rotação, segurando-o com a palma da mão oposta.", hands: "👍 👍", arrows: "↻ ↺" },
+      { title: "Pontas dos dedos", text: "Friccione as pontas dos dedos em movimentos circulares na palma da mão oposta; alterne as mãos.", hands: "🤏 🤏", arrows: "⟳ ⟲" }
+    ];
+    let currentStep = 0;
+
+    function openArea(id) {
+      document.getElementById("home").classList.add("hidden");
+      document.querySelectorAll(".content-area").forEach(area => area.classList.remove("active"));
+      document.getElementById(id).classList.add("active");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function goHome() {
+      document.querySelectorAll(".content-area").forEach(area => area.classList.remove("active"));
+      document.getElementById("home").classList.remove("hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function renderStep() {
+      const step = steps[currentStep];
+      document.getElementById("stepCounter").textContent = `ETAPA ${currentStep + 1} DE ${steps.length}`;
+      document.getElementById("stepTitle").textContent = step.title;
+      document.getElementById("stepText").textContent = step.text;
+      document.getElementById("handEmoji").textContent = step.hands;
+      document.getElementById("handArrows").textContent = step.arrows;
+      document.getElementById("prevStep").disabled = currentStep === 0;
+      document.getElementById("nextStep").textContent = currentStep === steps.length - 1 ? "Recomeçar ↻" : "Próxima etapa →";
+      document.getElementById("stepProgress").innerHTML = steps.map((_, i) =>
+        `<span class="progress-segment ${i <= currentStep ? "done" : ""}"></span>`
+      ).join("");
+    }
+
+    function changeStep(direction) {
+      currentStep = (currentStep + direction + steps.length) % steps.length;
+      renderStep();
+    }
+
+    const professionalQuestions = [
+      {
+        q: "Quando as mãos estão visivelmente sujas, qual método é indicado?",
+        options: ["Preparação alcoólica sempre", "Água e sabonete", "Somente usar luvas"],
+        answer: 1,
+        explanation: "Isso mesmo! Quando as mãos estão visivelmente sujas, a lavagem com água e sabonete é indicada."
+      },
+      {
+        q: "O uso de luvas substitui a higienização das mãos?",
+        options: ["Sim, sempre", "Só quando são descartáveis", "Não, a higienização continua necessária"],
+        answer: 2,
+        explanation: "Correto! Luvas não substituem a higienização das mãos; higienize nos momentos indicados."
+      },
+      {
+        q: "Qual é uma oportunidade de higienizar as mãos na assistência?",
+        options: ["Antes de tocar o paciente", "Somente ao fim do plantão", "Apenas quando parecem sujas"],
+        answer: 0,
+        explanation: "Correto! Higienizar antes de tocar o paciente é um dos momentos essenciais."
+      }
+    ];
+
+    const patientQuestions = [
+      {
+        q: "Verdadeiro ou falso: posso perguntar, com respeito, se a equipe higienizou as mãos antes do cuidado.",
+        options: ["Verdadeiro", "Falso"],
+        answer: 0,
+        explanation: "Verdadeiro! Você pode participar do cuidado e tirar dúvidas com a equipe."
+      },
+      {
+        q: "Se minhas mãos estiverem sujas, o que devo fazer?",
+        options: ["Ignorar, porque não importa", "Higienizá-las com água e sabonete", "Passar apenas um pano seco"],
+        answer: 1,
+        explanation: "Isso mesmo! Água e sabonete são indicados quando as mãos estão visivelmente sujas."
+      }
+    ];
+
+    function createQuiz(containerId, questions) {
+      const container = document.getElementById(containerId);
+      let index = 0;
+      let score = 0;
+      let answered = false;
+
+      function render() {
+        if (index >= questions.length) {
+          container.innerHTML = `<h3>🎉 Você concluiu!</h3><p>Acertos: <strong>${score} de ${questions.length}</strong>.</p><button class="primary-button" type="button">Tentar novamente</button>`;
+          container.querySelector("button").addEventListener("click", () => { index = 0; score = 0; answered = false; render(); });
+          return;
+        }
+        const item = questions[index];
+        container.innerHTML = `<p class="step-counter">PERGUNTA ${index + 1} DE ${questions.length}</p><p class="quiz-question">${item.q}</p><div class="quiz-options">${item.options.map((option, i) => `<button class="quiz-option" type="button" data-index="${i}">${option}</button>`).join("")}</div><div class="feedback" aria-live="polite"></div><div class="controls"><button class="primary-button hidden" id="quizNext" type="button">${index === questions.length - 1 ? "Ver resultado" : "Próxima pergunta →"}</button></div>`;
+        const feedback = container.querySelector(".feedback");
+        container.querySelectorAll(".quiz-option").forEach(button => {
+          button.addEventListener("click", () => {
+            if (answered) return;
+            answered = true;
+            const chosen = Number(button.dataset.index);
+            const correct = chosen === item.answer;
+            if (correct) score++;
+            container.querySelectorAll(".quiz-option").forEach(option => option.disabled = true);
+            feedback.className = `feedback show ${correct ? "good" : "bad"}`;
+            feedback.textContent = (correct ? "✅ Muito bem! " : "💡 Vamos aprender: ") + item.explanation;
+            container.querySelector("#quizNext").classList.remove("hidden");
+          });
+        });
+        container.querySelector("#quizNext").addEventListener("click", () => { index++; answered = false; render(); });
+      }
+      render();
+    }
+
+    renderStep();
+    createQuiz("quizContent", professionalQuestions);
+    createQuiz("patientQuiz", patientQuestions);
+  </script>
+</body>
+</html>
